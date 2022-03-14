@@ -7,4 +7,4 @@ COPY ./src ./src
 
 WORKDIR ./src
 
-CMD ["python", "main.py"]
+CMD ["uvicorn", "main:app", "-h", "0.0.0.0", "-p", "8000"]
