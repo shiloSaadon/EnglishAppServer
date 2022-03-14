@@ -6,4 +6,4 @@ python-dateutil==2.8.2
 pyttsx3==2.90
 supermemo2==2.0.0
 uvicorn==0.17.6
-pycrypto==2.6.1
+pycryptodome==3.14.1
