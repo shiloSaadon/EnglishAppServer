@@ -11,7 +11,7 @@ Client = MongoClient(mongoUrl)
 db = Client["englishWordsApp"]
 users_collection = db["users"]
 
-logger.add("utilisut.log", diagnose=True)
+logger.add("utilsOut.log", diagnose=True)
 
 
 def verify_user_info(info: str) -> str:
