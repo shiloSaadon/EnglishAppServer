@@ -34,10 +34,14 @@ def get_words(user_collection: str = Depends(verify_user_info)):
     all_words = {}
     english_words = [
         x["word"]
-        for x in users_db[user_collection].find({"alreadyKnow": {"$exists": False}}, {"word": 1})
+        for x in users_db[user_collection].find(
+            {"alreadyKnow": {"$exists": False}}, {"word": 1}
+        )
     ]
-    all_user_words = [x["word"] for x in users_db[user_collection].find({}, {"word":1})]
-    logger.info(f'{len(english_words)}, {len(all_user_words)}')
+    all_user_words = [
+        x["word"] for x in users_db[user_collection].find({}, {"word": 1})
+    ]
+    logger.info(f"{len(english_words)}, {len(all_user_words)}")
     random.shuffle(english_words)
     random.shuffle(all_user_words)
 
