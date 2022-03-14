@@ -1,5 +1,6 @@
 import random
 from datetime import datetime
+from pathlib import Path
 
 from fastapi import Request, Depends, APIRouter
 from fastapi.responses import FileResponse
@@ -238,7 +239,8 @@ async def level_up(info: str, user_collection: str = Depends(verify_user_info)):
 
 @router.get("/{word}")
 def get_audio(word: str):
-    return FileResponse("sounds/" + word, media_type="audio/mpeg")
+    sounds_file = Path(__file__).parent.parent / f"sounds/{word}"
+    return FileResponse(str(sounds_file), media_type="audio/mpeg")
 
 
 @router.put("/send_data")
