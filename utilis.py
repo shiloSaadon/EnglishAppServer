@@ -1,23 +1,28 @@
 from fastapi import HTTPException, status
-import time
 from pymongo import MongoClient
+import time
 import hashlib
 from Crypto import Random
+from loguru import logger
 
-Client = MongoClient("mongodb://shilo:shiloroot@127.0.0.1:27017/?authSource=admin")
+from consts import mongoUrl
+
+Client = MongoClient(mongoUrl)
 db = Client["englishWordsApp"]
 users_collection = db["users"]
+
+logger.add("utilisut.log", diagnose=True)
 
 
 def verify_user_info(info: str) -> str:
     name, password = info.split(" ")
     salt = get_user_salt(name)
     hash_pass, salt = encrypt_data(password, salt=salt)
-    print(hash_pass)
+    logger.info(hash_pass)
     query = {"name": name, "password": hash_pass}
     user = users_collection.find_one(query)
     if user is None:
-        print("error:\n", "name:", name, "password:", password)
+        logger.info(f"error:\n name: {name}, password: {password}")
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND, detail="User not found"
         )
@@ -54,7 +59,7 @@ def get_user_level(info: str):
 def get_user_salt(name):
     user = users_collection.find_one({"name": name})
     if user is None:
-        print("no user name found")
+        logger.info("no user name found")
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND, detail="User not found"
         )
