@@ -1,4 +1,4 @@
-#from Crypto import Random
+from Crypto import Random
 from fastapi import HTTPException, status
 from pymongo import MongoClient
 import time
@@ -60,9 +60,6 @@ def get_user_level(info: str):
 
 def get_user_salt(name):
     user = users_collection.find_one({"name": name})
-    if user is None:
-        while True:
-            print("user is: ", user)
     if user is None:
         logger.info("no user name found")
         raise HTTPException(
