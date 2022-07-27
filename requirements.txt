@@ -1,5 +1,5 @@
 crypto==1.4.1
-fastapi==0.33.0
+fastapi==0.75.0
 loguru==0.6.0
 pymongo==3.12.1
 python-dateutil==2.8.2
@@ -7,4 +7,3 @@ pyttsx3==2.90
 supermemo2==2.0.0
 uvicorn==0.17.6
 pycryptodome==3.14.1
-pydantic==0.30.0
