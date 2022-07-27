@@ -1,8 +1,8 @@
+from Crypto import Random
 from fastapi import HTTPException, status
 from pymongo import MongoClient
 import time
 import hashlib
-from Crypto import Random
 from loguru import logger
 
 from consts import mongoUrl

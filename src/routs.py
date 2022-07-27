@@ -239,8 +239,12 @@ async def level_up(info: str, user_collection: str = Depends(verify_user_info)):
 
 @router.get("/{word}")
 def get_audio(word: str):
-    sounds_file = Path(__file__).parent.parent / f"sounds/{word}"
-    return FileResponse(str(sounds_file), media_type="audio/mpeg")
+    try:
+        sounds_file = Path(__file__).parent.parent / f"sounds/{word}"
+        return FileResponse(str(sounds_file), media_type="audio/mpeg")
+    except Exception as e:
+        sounds_file = Path(__file__).parent.parent / f"sounds/a.mp3"
+        return FileResponse(str(sounds_file), media_type="audio/mpeg")
 
 
 @router.put("/send_data")
