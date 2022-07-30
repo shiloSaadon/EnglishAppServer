@@ -32,6 +32,8 @@ logger.add("out.log", diagnose=True)
 
 @router.get("/")
 def get_words(user_collection: str = Depends(verify_user_info)):
+    print("get words")
+    return {"words": {}, "all words": {}}
     all_words = {}
     english_words = [
         x["word"]
@@ -125,8 +127,9 @@ def register(name: str, password: str, private_name: str):
 
 @router.put("/login")
 def login(info: str, user_data_base: str = Depends(verify_user_info)):
-    if user_data_base is None:
-        return {"ok": False, "log": "user not found"}
+    print("log in")
+    #if user_data_base is None:
+    #    return {"ok": False, "log": "user not found"}
 
     return {"ok": True, "log": "success"}
 
