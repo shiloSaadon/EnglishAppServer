@@ -7,3 +7,4 @@ pyttsx3==2.90
 supermemo2==2.0.0
 uvicorn==0.17.6
 pycryptodome==3.14.1
+aiofiles==0.8.0
