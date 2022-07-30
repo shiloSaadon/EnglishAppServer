@@ -15,10 +15,8 @@ logger.add("utilsOut.log", diagnose=True)
 
 
 def verify_user_info(info: str) -> str:
-    print("start")
     name, password = info.split(" ")
     salt = get_user_salt(name)
-    print(salt)
     hash_pass, salt = encrypt_data(password, salt=salt)
     logger.info(hash_pass)
     query = {"name": name, "password": hash_pass}
