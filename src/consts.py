@@ -1,2 +1,2 @@
-mongoUrl = "mongodb://shilo:shiloroot@127.0.0.1:27017/?authSource=admin"
+mongoUrl = "mongodb://shilo:shiloroot@136.244.119.47:27017/?authSource=admin"
 MAX_LEVEL = 7

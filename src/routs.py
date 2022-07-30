@@ -32,8 +32,6 @@ logger.add("out.log", diagnose=True)
 
 @router.get("/")
 def get_words(user_collection: str = Depends(verify_user_info)):
-    print("get words")
-    return {"words": {}, "all words": {}}
     all_words = {}
     english_words = [
         x["word"]
@@ -127,9 +125,8 @@ def register(name: str, password: str, private_name: str):
 
 @router.put("/login")
 def login(info: str, user_data_base: str = Depends(verify_user_info)):
-    print("log in")
-    #if user_data_base is None:
-    #    return {"ok": False, "log": "user not found"}
+    if user_data_base is None:
+        return {"ok": False, "log": "user not found"}
 
     return {"ok": True, "log": "success"}
 
@@ -242,12 +239,8 @@ async def level_up(info: str, user_collection: str = Depends(verify_user_info)):
 
 @router.get("/{word}")
 def get_audio(word: str):
-    try:
-        sounds_file = Path(__file__).parent.parent / f"sounds/{word}"
-        return FileResponse(str(sounds_file), media_type="audio/mpeg")
-    except Exception as e:
-        sounds_file = Path(__file__).parent.parent / f"sounds/a.mp3"
-        return FileResponse(str(sounds_file), media_type="audio/mpeg")
+    sounds_file = Path(__file__).parent.parent / f"sounds/{word}"
+    return FileResponse(str(sounds_file), media_type="audio/mpeg")
 
 
 @router.put("/send_data")
